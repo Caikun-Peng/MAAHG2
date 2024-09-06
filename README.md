@@ -1,6 +1,6 @@
 <!-- markdownlint-disable MD033 MD041 -->
 <p align="center">
-  <img alt="LOGO" src="images/MAAHG2_logo.jpg" width="256" height="256" />
+  <img alt="LOGO" src="images/MAAHG2_logo.png" width="256" height="256" />
 </p>
 
 <div align="center">
