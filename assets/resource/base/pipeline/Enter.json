@@ -1,0 +1,19 @@
+{
+    "Enter": {
+        "recognition": "OCR",
+        "expected": [
+            "继续"
+        ],
+        "action": "Click",
+        "next": [
+            "SkipAnnouncement"
+        ]
+    },
+    "SkipAnnouncement": {
+        "recognition": "OCR",
+        "expected": [
+            "X"
+        ],
+        "action": "Click"
+    }
+}
