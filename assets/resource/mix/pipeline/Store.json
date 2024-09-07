@@ -1,0 +1,108 @@
+{
+    "GotoStore": {
+        "recognition": "OCR",
+        "expected": [
+            "商店"
+        ],
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 100,
+        "next": [
+            "EnterPackShop"
+        ]
+    },
+    "EnterPackShop": {
+        "recognition": "OCR",
+        "expected": [
+            "礼包商店"
+        ],
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "ChooseHoumeiPack"
+        ]
+    },
+    "ChooseHoumeiPack": {
+        "recognition": "OCR",
+        "expected": [
+            "吼美礼包"
+        ],
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "FindGift"
+        ]
+    },
+    "FindGift": {
+        "recognition": "TemplateMatch",
+        "template": "零时之种.png",
+        "inverse": true,
+        "next": [
+            "ChooseGift",
+            "SwipeDown",
+            "BackToStore"
+        ]
+    },
+    "ChooseGift": {
+        "is_sub": false,
+        "recognition": "TemplateMatch",
+        "template": "零时之种.png",
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "BuyGift"
+        ]
+    },
+    "SwipeDown": {
+        "is_sub": false,
+        "action": "Swipe",
+        "begin": [
+            678,
+            626,
+            602,
+            94
+        ],
+        "end": [
+            678,
+            224,
+            602,
+            76
+        ],
+        "pre_delay": 100,
+        "times_limit": 3,
+        "runout_next": [
+            "BackToStore"
+        ],
+        "next": [
+            "FindGift"
+        ]
+    },
+    "BuyGift": {
+        "recognition": "TemplateMatch",
+        "template": "Buy.png",
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 100,
+        "next": [
+            "BuyGiftComfirm"
+        ]
+    },
+    "BuyGiftComfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 100
+    },
+    "BackToStore": {
+        "recognition": "TemplateMatch",
+        "template": "Back.png",
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 100,
+        "times_limit": 1,
+        "next": []
+    }
+}
