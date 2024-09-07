@@ -1,0 +1,126 @@
+{
+    "StartFracture": {
+        "recognition": "OCR",
+        "expected": [
+            "战斗"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "FindFracture"
+        ]
+    },
+    "FindFracture": {
+        "recognition": "OCR",
+        "expected": [
+            "多元裂缝",
+            "多元",
+            "裂缝"
+        ],
+        "inverse": true,
+        "next": [
+            "EnterFracture",
+            "SwipeDown"
+        ]
+    },
+    "EnterFracture": {
+        "recognition": "OCR",
+        "expected": [
+            "多元裂缝",
+            "多元",
+            "裂缝"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "pre_delay": 100,
+        "next": [
+            "EnterVirtualCourt"
+        ]
+    },
+    "EnterVirtualCourt": {
+        "recognition": "OCR",
+        "expected": [
+            "虚轴之庭",
+            "虚轴",
+            "之庭"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "pre_delay": 100,
+        "next": [
+            "GotoFight"
+        ]
+    },
+    "GotoFight": {
+        "recognition": "OCR",
+        "expected": [
+            "出击",
+            "出",
+            "击"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "pre_delay": 100,
+        "next": [
+            "QuickFight",
+            "Back",
+            "LoveOfServant",
+            "BackToBattle",
+            "WaitForOtherTask"
+        ]
+    },
+    "QuickFight": {
+        "recognition": "OCR",
+        "expected": [
+            "快捷战斗"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "pre_delay": 100,
+        "next": [
+            "QuickFightComfirm",
+            "Back"
+        ],
+        "times_limit": 3,
+        "runout_next": [
+            "Back",
+            "BackToBattle",
+            "LoveOfServant"
+        ]
+    },
+    "QuickFightComfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "pre_delay": 100,
+        "next": [
+            "QuickFightComfirm",
+            "QuickFight",
+            "Back"
+        ]
+    },
+    "LoveOfServant": {
+        "recognition": "OCR",
+        "expected": [
+            "使魔的爱"
+        ],
+        "target_offset": [
+            0,
+            50,
+            0,
+            0
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "pre_delay": 100,
+        "next": [
+            "QuickFight",
+            "Back",
+            "BackToBattle",
+            "WaitForOtherTask"
+        ]
+    }
+}
