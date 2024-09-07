@@ -53,30 +53,6 @@
             "BuyGift"
         ]
     },
-    "SwipeDown": {
-        "is_sub": false,
-        "action": "Swipe",
-        "begin": [
-            678,
-            626,
-            602,
-            94
-        ],
-        "end": [
-            678,
-            224,
-            602,
-            76
-        ],
-        "pre_delay": 100,
-        "times_limit": 3,
-        "runout_next": [
-            "BackToStore"
-        ],
-        "next": [
-            "FindGift"
-        ]
-    },
     "BuyGift": {
         "recognition": "TemplateMatch",
         "template": "Buy.png",

@@ -40,11 +40,5 @@
         ],
         "action": "Click",
         "pre_delay": 200
-    },
-    "WaitForOtherTask": {
-        "recognition": "OCR",
-        "expected": [
-            "首页"
-        ]
     }
 }
