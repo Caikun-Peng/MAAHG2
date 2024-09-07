@@ -1,19 +1,50 @@
 {
-    "Enter": {
+    "ChooseServer": {
+        "recognition": "OCR",
+        "expected": [
+            "进入"
+        ],
+        "action": "Click",
+        "pre_delay": 200,
+        "next": [
+            "EnterGame"
+        ]
+    },
+    "EnterGame": {
         "recognition": "OCR",
         "expected": [
             "继续"
         ],
         "action": "Click",
+        "pre_delay": 200,
         "next": [
-            "SkipAnnouncement"
+            "DailyCheck-in",
+            "SkipAnnouncement",
+            "WaitForOtherTask"
         ]
+    },
+    "DailyCheck-in": {
+        "recognition": "OCR",
+        "expected": [
+            "领取"
+        ],
+        "index": 1,
+        "action": "Click",
+        "pre_delay": 200,
+        "is_sub": true
     },
     "SkipAnnouncement": {
         "recognition": "OCR",
         "expected": [
             "X"
         ],
-        "action": "Click"
+        "action": "Click",
+        "pre_delay": 200
+    },
+    "WaitForOtherTask": {
+        "recognition": "OCR",
+        "expected": [
+            "首页"
+        ]
     }
 }

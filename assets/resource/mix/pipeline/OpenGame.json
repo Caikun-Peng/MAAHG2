@@ -3,13 +3,13 @@
         "action": "StartApp",
         "package": "com.miHoYo.HSoDv2.mix/com.mihoyo.combosdk.ComboSDKActivity",
         "next": [
-            "Term",
-            "Update",
-            "Download",
+            "ComfirmTerm",
+            "GetUpdate",
+            "DownloadResource",
             "WaitToEnter"
         ]
     },
-    "Term": {
+    "ComfirmTerm": {
         "recognition": "OCR",
         "expected": [
             "接受"
@@ -17,7 +17,7 @@
         "action": "Click",
         "is_sub": true
     },
-    "Update": {
+    "GetUpdate": {
         "recognition": "OCR",
         "expected": [
             "更新"
@@ -25,7 +25,7 @@
         "action": "Click",
         "is_sub": true
     },
-    "Download": {
+    "DownloadResource": {
         "recognition": "OCR",
         "expected": [
             "快给我下"
