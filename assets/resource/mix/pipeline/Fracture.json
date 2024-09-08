@@ -7,7 +7,8 @@
         "action": "Click",
         "post_delay": 200,
         "next": [
-            "FindFracture"
+            "FindFracture",
+            "EnterFracture"
         ]
     },
     "FindFracture": {
@@ -55,11 +56,10 @@
         "recognition": "OCR",
         "expected": [
             "出击",
-            "出",
             "击"
         ],
         "action": "Click",
-        "post_delay": 200,
+        "post_delay": 500,
         "pre_delay": 100,
         "next": [
             "QuickFight",
@@ -70,6 +70,7 @@
         ]
     },
     "QuickFight": {
+        "is_sub": true,
         "recognition": "OCR",
         "expected": [
             "快捷战斗"
@@ -78,8 +79,10 @@
         "post_delay": 200,
         "pre_delay": 100,
         "next": [
-            "QuickFightComfirm",
-            "Back"
+            "QuickFight",
+            "QuickFightConfirm",
+            "Back",
+            "BackToBattle"
         ],
         "times_limit": 3,
         "runout_next": [
@@ -88,19 +91,15 @@
             "LoveOfServant"
         ]
     },
-    "QuickFightComfirm": {
+    "QuickFightConfirm": {
+        "is_sub": true,
         "recognition": "OCR",
         "expected": [
             "确定"
         ],
         "action": "Click",
         "post_delay": 200,
-        "pre_delay": 100,
-        "next": [
-            "QuickFightComfirm",
-            "QuickFight",
-            "Back"
-        ]
+        "pre_delay": 100
     },
     "LoveOfServant": {
         "recognition": "OCR",
