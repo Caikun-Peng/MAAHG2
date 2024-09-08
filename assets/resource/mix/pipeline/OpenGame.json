@@ -2,14 +2,15 @@
     "OpenGame": {
         "action": "StartApp",
         "package": "com.miHoYo.HSoDv2.mix/com.mihoyo.combosdk.ComboSDKActivity",
+        "post_wait_freezes": 2000,
         "next": [
-            "ComfirmTerm",
+            "ConfirmTerm",
             "GetUpdate",
             "DownloadResource",
             "WaitToEnter"
         ]
     },
-    "ComfirmTerm": {
+    "ConfirmTerm": {
         "recognition": "OCR",
         "expected": [
             "接受"

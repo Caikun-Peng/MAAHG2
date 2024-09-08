@@ -60,17 +60,10 @@
         "pre_delay": 100,
         "post_delay": 100,
         "next": [
-            "BuyGiftComfirm"
+            "ResultConfirm",
+            "Back",
+            "WaitForOtherTask"
         ]
-    },
-    "BuyGiftComfirm": {
-        "recognition": "OCR",
-        "expected": [
-            "确定"
-        ],
-        "action": "Click",
-        "pre_delay": 100,
-        "post_delay": 100
     },
     "BackToStore": {
         "recognition": "TemplateMatch",

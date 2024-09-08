@@ -11,8 +11,7 @@
         "template": "Back.png",
         "threshold": 0.7,
         "action": "Click",
-        "post_delay": 100,
-        "pre_delay": 100
+        "post_delay": 200
     },
     "SwipeDown": {
         "is_sub": true,
@@ -25,11 +24,11 @@
         ],
         "end": [
             1000,
-            224,
+            424,
             60,
             20
         ],
-        "pre_delay": 100,
+        "post_delay": 200,
         "times_limit": 3
     },
     "SwipeUp": {
@@ -47,7 +46,7 @@
             60,
             20
         ],
-        "pre_delay": 100,
+        "post_delay": 200,
         "times_limit": 3
     },
     "SwipeRight": {
@@ -65,17 +64,17 @@
             10,
             10
         ],
-        "pre_delay": 100,
+        "post_delay": 200,
         "times_limit": 3
     },
-    "ResultComfirm": {
+    "ResultConfirm": {
+        "is_sub": true,
         "recognition": "OCR",
         "expected": [
             "确定"
         ],
         "action": "Click",
-        "post_delay": 100,
-        "pre_delay": 100
+        "post_delay": 200
     },
     "WaitForOtherTask": {
         "recognition": "OCR",
