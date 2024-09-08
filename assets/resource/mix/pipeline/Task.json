@@ -1,5 +1,16 @@
 {
     "StartTask": {
+        "recognition": "OCR",
+        "expected": [
+            "首页"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "EnterTask"
+        ]
+    },
+    "EnterTask": {
         "recognition": "TemplateMatch",
         "template": "Task.png",
         "action": "Click",
