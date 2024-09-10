@@ -19,6 +19,8 @@
             "裂缝"
         ],
         "inverse": true,
+        "pre_wait_freezes": 500,
+        "post_delay": 500,
         "next": [
             "EnterFracture",
             "SwipeDown"
@@ -32,8 +34,8 @@
             "裂缝"
         ],
         "action": "Click",
-        "post_delay": 200,
-        "pre_delay": 100,
+        "post_delay": 500,
+        "pre_wait_freezes": 500,
         "next": [
             "EnterVirtualCourt"
         ]
@@ -76,19 +78,15 @@
             "快捷战斗"
         ],
         "action": "Click",
-        "post_delay": 200,
+        "post_delay": 500,
         "pre_delay": 100,
         "next": [
-            "QuickFight",
             "QuickFightConfirm",
-            "Back",
-            "BackToBattle"
-        ],
-        "times_limit": 3,
-        "runout_next": [
+            "QuickFight",
             "Back",
             "BackToBattle",
-            "LoveOfServant"
+            "LoveOfServant",
+            "WaitForOtherTask"
         ]
     },
     "QuickFightConfirm": {
@@ -98,7 +96,7 @@
             "确定"
         ],
         "action": "Click",
-        "post_delay": 200,
+        "post_delay": 500,
         "pre_delay": 100
     },
     "LoveOfServant": {

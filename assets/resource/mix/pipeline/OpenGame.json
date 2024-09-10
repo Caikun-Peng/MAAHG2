@@ -3,6 +3,7 @@
         "action": "StartApp",
         "package": "com.miHoYo.HSoDv2.mix/com.mihoyo.combosdk.ComboSDKActivity",
         "post_wait_freezes": 2000,
+        "post_delay": 500,
         "next": [
             "ConfirmTerm",
             "GetUpdate",

@@ -20,7 +20,10 @@
         "next": [
             "ReceiveMailReward"
         ],
-        "times_limit": 1
+        "times_limit": 1,
+        "runout_next": [
+            "WaitForOtherTask"
+        ]
     },
     "EnterClub": {
         "recognition": "OCR",
@@ -67,7 +70,7 @@
             "不可领"
         ],
         "action": "Click",
-        "post_delay": 100,
+        "post_delay": 1000,
         "next": [
             "ResultConfirm",
             "BackToSocial"

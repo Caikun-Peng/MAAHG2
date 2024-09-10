@@ -13,8 +13,9 @@
     "EnterEvent": {
         "recognition": "OCR",
         "expected": [
-            "从容赴约",
-            "从容起约"
+            "甜蜜烘焙",
+            "甜蜜",
+            "烘焙"
         ],
         "action": "Click",
         "post_delay": 200,
@@ -50,7 +51,7 @@
     "UsingDouble": {
         "recognition": "TemplateMatch",
         "template": "Click.png",
-        "threshold": 0.49,
+        "threshold": 0.48,
         "action": "Click",
         "next": [
             "PreFight",

@@ -40,6 +40,7 @@
         ],
         "action": "Click",
         "post_delay": 500,
+        "post_wait_freezes": 500,
         "next": [
             "ReceiveRewardConfirm"
         ]
@@ -53,6 +54,7 @@
         "action": "Click",
         "post_delay": 500,
         "next": [
+            "ChooseServant",
             "QuickChoose"
         ]
     },

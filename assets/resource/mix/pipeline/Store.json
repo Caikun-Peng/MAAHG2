@@ -37,6 +37,7 @@
         "recognition": "TemplateMatch",
         "template": "零时之种.png",
         "inverse": true,
+        "post_delay": 500,
         "next": [
             "ChooseGift",
             "SwipeDown",
@@ -48,7 +49,7 @@
         "recognition": "TemplateMatch",
         "template": "零时之种.png",
         "action": "Click",
-        "post_delay": 100,
+        "post_delay": 500,
         "next": [
             "BuyGift"
         ]
@@ -58,7 +59,7 @@
         "template": "Buy.png",
         "action": "Click",
         "pre_delay": 100,
-        "post_delay": 100,
+        "post_delay": 500,
         "next": [
             "ResultConfirm",
             "Back",
