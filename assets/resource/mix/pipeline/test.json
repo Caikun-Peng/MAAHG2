@@ -1,0 +1,28 @@
+{
+    "test": {
+        "post_wait_freezes": 1000,
+        "next": [
+            "inFight",
+            "outFight"
+        ]
+    },
+    "inFight": {
+        "is_sub": true,
+        "recognition": "OCR",
+        "expected": [
+            "HP"
+        ],
+        "action": "Custom",
+        "custom_action": "FightStart"
+    },
+    "outFight": {
+        "is_sub": true,
+        "recognition": "OCR",
+        "expected": [
+            "HP"
+        ],
+        "inverse": true,
+        "action": "Custom",
+        "custom_action": "FightEnd"
+    }
+}
