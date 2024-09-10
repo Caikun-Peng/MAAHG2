@@ -1,0 +1,78 @@
+{
+    "GotoStore": {
+        "recognition": "OCR",
+        "expected": [
+            "商店"
+        ],
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 100,
+        "next": [
+            "EnterPackShop"
+        ]
+    },
+    "EnterPackShop": {
+        "recognition": "OCR",
+        "expected": [
+            "礼包商店"
+        ],
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "ChooseHoumeiPack"
+        ]
+    },
+    "ChooseHoumeiPack": {
+        "recognition": "OCR",
+        "expected": [
+            "吼美礼包"
+        ],
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "FindGift"
+        ]
+    },
+    "FindGift": {
+        "recognition": "TemplateMatch",
+        "template": "零时之种.png",
+        "inverse": true,
+        "post_delay": 500,
+        "next": [
+            "ChooseGift",
+            "SwipeDown",
+            "BackToStore"
+        ]
+    },
+    "ChooseGift": {
+        "is_sub": false,
+        "recognition": "TemplateMatch",
+        "template": "零时之种.png",
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "BuyGift"
+        ]
+    },
+    "BuyGift": {
+        "recognition": "TemplateMatch",
+        "template": "Buy.png",
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 500,
+        "next": [
+            "ResultConfirm",
+            "Back",
+            "WaitForOtherTask"
+        ]
+    },
+    "BackToStore": {
+        "recognition": "TemplateMatch",
+        "template": "Back.png",
+        "action": "Click",
+        "pre_delay": 100,
+        "post_delay": 100,
+        "times_limit": 1,
+        "next": []
+    }
+}

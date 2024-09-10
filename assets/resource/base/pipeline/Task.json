@@ -1,0 +1,127 @@
+{
+    "StartTask": {
+        "recognition": "OCR",
+        "expected": [
+            "首页"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "EnterTask"
+        ]
+    },
+    "EnterTask": {
+        "recognition": "TemplateMatch",
+        "template": "Task.png",
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "GotoServantTravel"
+        ]
+    },
+    "GotoServantTravel": {
+        "recognition": "OCR",
+        "expected": [
+            "使魔"
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "ReceiveTravelReward",
+            "ChooseServant",
+            "GotoWeeklyTask"
+        ]
+    },
+    "ReceiveTravelReward": {
+        "is_sub": true,
+        "recognition": "OCR",
+        "expected": [
+            "点击领取奖励"
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "post_wait_freezes": 500,
+        "next": [
+            "ReceiveRewardConfirm"
+        ]
+    },
+    "ChooseServant": {
+        "is_sub": true,
+        "recognition": "OCR",
+        "expected": [
+            "点击选择使魔"
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "ChooseServant",
+            "QuickChoose"
+        ]
+    },
+    "QuickChoose": {
+        "recognition": "OCR",
+        "expected": [
+            "一键派遣"
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "StartTravel"
+        ]
+    },
+    "StartTravel": {
+        "recognition": "OCR",
+        "expected": [
+            "出发"
+        ],
+        "action": "Click",
+        "post_delay": 500
+    },
+    "GotoWeeklyTask": {
+        "recognition": "OCR",
+        "expected": [
+            "每周任务"
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "QuickRecive",
+            "GotoDailyTask"
+        ]
+    },
+    "GotoDailyTask": {
+        "recognition": "OCR",
+        "expected": [
+            "存在感"
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "QuickRecive",
+            "Back",
+            "WaitForOtherTask"
+        ]
+    },
+    "ReceiveRewardConfirm": {
+        "action": "Click",
+        "target": [
+            100,
+            600,
+            10,
+            10
+        ],
+        "pre_delay": 500
+    },
+    "QuickRecive": {
+        "is_sub": true,
+        "recognition": "TemplateMatch",
+        "template": "QuickRecive.png",
+        "threshold": 0.98,
+        "action": "Click",
+        "times_limit": 2,
+        "post_delay": 500,
+        "next": [
+            "ReceiveRewardConfirm"
+        ]
+    }
+}

@@ -1,0 +1,132 @@
+{
+    "GotoEquip": {
+        "recognition": "OCR",
+        "expected": [
+            "装备"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "EnterCampus"
+        ]
+    },
+    "EnterCampus": {
+        "recognition": "OCR",
+        "expected": [
+            "崩科校活"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "EnterLabBuilding",
+            "FightInCampus"
+        ]
+    },
+    "EnterLabBuilding": {
+        "recognition": "OCR",
+        "expected": [
+            "实验楼"
+        ],
+        "target_offset": [
+            0,
+            -50,
+            0,
+            0
+        ],
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "CheckServantStatus",
+            "ReceiveIncome"
+        ]
+    },
+    "CheckServantStatus": {
+        "recognition": "OCR",
+        "expected": [
+            "空闲"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "AddServant"
+        ]
+    },
+    "AddServant": {
+        "action": "Click",
+        "post_delay": 500,
+        "target": [
+            170,
+            200,
+            90,
+            90
+        ],
+        "next": [
+            "AddServantConfirm"
+        ]
+    },
+    "AddServantConfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "选择"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "BackToCampus"
+        ]
+    },
+    "ReceiveIncome": {
+        "recognition": "OCR",
+        "expected": [
+            "领取收益"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "ReceiveIncomeConfirm"
+        ]
+    },
+    "ReceiveIncomeConfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "崩坏"
+        ],
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "BackToCampus",
+            "FightInCampus"
+        ]
+    },
+    "FightInCampus": {
+        "recognition": "TemplateMatch",
+        "template": "Fight.png",
+        "action": "Click",
+        "post_delay": 200,
+        "next": [
+            "CheckFightList"
+        ]
+    },
+    "CheckFightList": {
+        "next": [
+            "GameTesterAction"
+        ]
+    },
+    "GameTesterAction": {
+        "recognition": "OCR",
+        "expected": [
+            "游戏测试员"
+        ],
+        "next": [
+            "PreFight"
+        ]
+    },
+    "BackToCampus": {
+        "is_sub": true,
+        "recognition": "OCR",
+        "expected": [
+            "X"
+        ],
+        "action": "Click"
+    }
+}

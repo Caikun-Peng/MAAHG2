@@ -1,0 +1,86 @@
+{
+    "Back": {
+        "is_sub": true,
+        "roi": [
+            0,
+            0,
+            200,
+            200
+        ],
+        "recognition": "TemplateMatch",
+        "template": "Back.png",
+        "threshold": 0.7,
+        "action": "Click",
+        "post_delay": 200
+    },
+    "SwipeDown": {
+        "is_sub": true,
+        "action": "Swipe",
+        "begin": [
+            1000,
+            626,
+            1,
+            1
+        ],
+        "end": [
+            1000,
+            524,
+            1,
+            1
+        ],
+        "post_delay": 500,
+        "times_limit": 3
+    },
+    "SwipeUp": {
+        "is_sub": true,
+        "action": "Swipe",
+        "begin": [
+            1000,
+            524,
+            1,
+            1
+        ],
+        "end": [
+            1000,
+            626,
+            1,
+            1
+        ],
+        "post_delay": 200,
+        "times_limit": 3
+    },
+    "SwipeRight": {
+        "is_sub": true,
+        "action": "Swipe",
+        "begin": [
+            400,
+            600,
+            10,
+            10
+        ],
+        "end": [
+            800,
+            600,
+            10,
+            10
+        ],
+        "post_delay": 200,
+        "times_limit": 3
+    },
+    "ResultConfirm": {
+        "is_sub": true,
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "action": "Click",
+        "pre_delay": 200,
+        "post_delay": 200
+    },
+    "WaitForOtherTask": {
+        "recognition": "OCR",
+        "expected": [
+            "首页"
+        ]
+    }
+}

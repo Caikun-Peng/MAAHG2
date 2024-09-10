@@ -1,0 +1,90 @@
+{
+    "GotoSocial": {
+        "recognition": "OCR",
+        "expected": [
+            "社交"
+        ],
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "EnterClub"
+        ]
+    },
+    "EnterMail": {
+        "recognition": "OCR",
+        "expected": [
+            "我的消息"
+        ],
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "ReceiveMailReward"
+        ],
+        "times_limit": 1,
+        "runout_next": [
+            "WaitForOtherTask"
+        ]
+    },
+    "EnterClub": {
+        "recognition": "OCR",
+        "expected": [
+            "我的社团"
+        ],
+        "action": "Click",
+        "pre_delay": 100,
+        "next": [
+            "ReceiveClubReward"
+        ],
+        "times_limit": 1,
+        "runout_next": [
+            "EnterMail"
+        ]
+    },
+    "ReceiveMailReward": {
+        "recognition": "OCR",
+        "expected": [
+            "一键领取",
+            "键领取"
+        ],
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "BackToSocial"
+        ]
+    },
+    "ReceiveClubReward": {
+        "recognition": "OCR",
+        "expected": [
+            "可领"
+        ],
+        "action": "Click",
+        "post_delay": 100,
+        "next": [
+            "ReceiveClubRewardConfirm"
+        ]
+    },
+    "ReceiveClubRewardConfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "领取",
+            "不可领"
+        ],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "ResultConfirm",
+            "BackToSocial"
+        ]
+    },
+    "BackToSocial": {
+        "recognition": "TemplateMatch",
+        "template": "Back.png",
+        "action": "Click",
+        "post_delay": 100,
+        "pre_delay": 100,
+        "next": [
+            "BackToSocial",
+            "GotoSocial"
+        ]
+    }
+}
