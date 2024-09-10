@@ -49,5 +49,19 @@
             "name": "test",
             "entry": "test"
         }
-    ]
+    ],
+    "action": {
+        "FightStart": {
+            "exec_path": "Python",
+            "exec_param": [
+                "{PROJECT_DIR}/exec_agent/FightStart.py"
+            ]
+        },
+        "FightEnd": {
+            "exec_path": "Python",
+            "exec_param": [
+                "{PROJECT_DIR}/exec_agent/FightEnd.py"
+            ]
+        }
+    }
 }
