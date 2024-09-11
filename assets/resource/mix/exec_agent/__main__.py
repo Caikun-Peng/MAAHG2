@@ -51,10 +51,21 @@ async def main():
     print("Waiting task...")
     maa_inst.register_action("FightStart", fight_start)
     maa_inst.register_action("FightEnd", fight_end)
-    while 1:
-        await maa_inst.run_task("test")
-        # await maa_inst.run_task("inFight")
-        # await maa_inst.run_task("outFight")
+
+    # await maa_inst.run_task("OpenGame")
+    # await maa_inst.run_task("ChooseServer")
+    # await maa_inst.run_task("GotoSocial")
+    # await maa_inst.run_task("GotoStore")
+    # await maa_inst.run_task("StartFracture")
+    # print("StartTask")
+    # await maa_inst.run_task("StartTask")
+    print("StartEvent")
+    await maa_inst.run_task("StartEvent")
+    print("Finish")
+    # while 1:
+    #     await maa_inst.run_task("test")
+    #     await maa_inst.run_task("inFight")
+    #     await maa_inst.run_task("outFight")
 
 class FightStart(CustomAction):
     def run(self, context, task_name, custom_param, box, rec_detail) -> bool:
