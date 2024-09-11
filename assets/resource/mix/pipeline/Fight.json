@@ -21,8 +21,7 @@
             "好友"
         ],
         "action": "Click",
-        "post_delay": 200,
-        "pre_delay": 100,
+        "post_delay": 500,
         "next": [
             "ChooseBuddy"
         ]
@@ -32,9 +31,9 @@
         "expected": [
             "好友"
         ],
+        "index": 1,
         "action": "Click",
-        "post_delay": 200,
-        "pre_delay": 100,
+        "post_delay": 500,
         "next": [
             "StartFight"
         ]
@@ -45,8 +44,7 @@
             "开战"
         ],
         "action": "Click",
-        "post_delay": 200,
-        "pre_delay": 300
+        "post_delay": 500
     },
     "CheckPower": {
         "recognition": "OCR",

@@ -84,8 +84,8 @@
             "QuickFightConfirm",
             "QuickFight",
             "Back",
-            "BackToBattle",
             "LoveOfServant",
+            "BackToBattle",
             "WaitForOtherTask"
         ]
     },

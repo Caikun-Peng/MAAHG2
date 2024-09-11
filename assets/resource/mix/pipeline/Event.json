@@ -56,22 +56,39 @@
         "next": [
             "PreFight",
             "Fighting"
+        ],
+        "times_limit": 3,
+        "runout_next": [
+            "ResultConfirm",
+            "BackToBattle",
+            "WaitForOtherTask"
         ]
     },
     "Fighting": {
         "is_sub": false,
+        "recognition": "OCR",
+        "expected": [
+            "HP"
+        ],
         "action": "Custom",
-        "custom_action": "FightAction",
+        "custom_action": "FightStart",
+        "post_delay": 5000,
         "next": [
             "FightFinish"
         ]
     },
     "FightFinish": {
+        "recognition": "OCR",
+        "expected": [
+            "HP"
+        ],
+        "inverse": true,
+        "action": "Custom",
+        "custom_action": "FightEnd",
+        "post_delay": 1000,
         "post_wait_freezes": 1000,
         "next": [
-            "ResultConfirm",
-            "BackToBattle",
-            "WaitForOtherTask"
+            "UsingDouble"
         ]
     }
 }
