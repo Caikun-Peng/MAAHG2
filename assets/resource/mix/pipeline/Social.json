@@ -1,14 +1,24 @@
 {
+    "StartSocial": {
+        "action": "Custom",
+        "custom_action": "StartSocial"
+    },
     "GotoSocial": {
         "recognition": "OCR",
         "expected": [
             "社交"
         ],
         "action": "Click",
-        "pre_delay": 100,
-        "next": [
-            "EnterClub"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "EnterMail": {
         "recognition": "OCR",
@@ -16,14 +26,16 @@
             "我的消息"
         ],
         "action": "Click",
-        "pre_delay": 100,
-        "next": [
-            "ReceiveMailReward"
-        ],
-        "times_limit": 1,
-        "runout_next": [
-            "WaitForOtherTask"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "EnterClub": {
         "recognition": "OCR",
@@ -31,14 +43,16 @@
             "我的社团"
         ],
         "action": "Click",
-        "pre_delay": 100,
-        "next": [
-            "ReceiveClubReward"
-        ],
-        "times_limit": 1,
-        "runout_next": [
-            "EnterMail"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "ReceiveMailReward": {
         "recognition": "OCR",
@@ -47,10 +61,16 @@
             "键领取"
         ],
         "action": "Click",
-        "post_delay": 100,
-        "next": [
-            "BackToSocial"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "ReceiveClubReward": {
         "recognition": "OCR",
@@ -58,10 +78,16 @@
             "可领"
         ],
         "action": "Click",
-        "post_delay": 100,
-        "next": [
-            "ReceiveClubRewardConfirm"
-        ]
+        "post_wait_freezes": {
+            "time": 500,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "ReceiveClubRewardConfirm": {
         "recognition": "OCR",
@@ -70,21 +96,15 @@
             "不可领"
         ],
         "action": "Click",
-        "post_delay": 1000,
-        "next": [
-            "ResultConfirm",
-            "BackToSocial"
-        ]
-    },
-    "BackToSocial": {
-        "recognition": "TemplateMatch",
-        "template": "Back.png",
-        "action": "Click",
-        "post_delay": 100,
-        "pre_delay": 100,
-        "next": [
-            "BackToSocial",
-            "GotoSocial"
-        ]
+        "post_wait_freezes": {
+            "time": 500,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     }
 }

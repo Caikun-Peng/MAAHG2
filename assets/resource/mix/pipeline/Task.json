@@ -1,23 +1,21 @@
 {
     "StartTask": {
+        "action": "Custom",
+        "custom_action": "StartTask"
+    },
+    "GotoHome": {
         "recognition": "OCR",
         "expected": [
             "首页"
         ],
         "action": "Click",
-        "post_delay": 200,
-        "next": [
-            "EnterTask"
-        ]
+        "post_delay": 500
     },
     "EnterTask": {
         "recognition": "TemplateMatch",
         "template": "Task.png",
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "GotoServantTravel"
-        ]
+        "post_delay": 500
     },
     "GotoServantTravel": {
         "recognition": "OCR",
@@ -25,38 +23,28 @@
             "使魔"
         ],
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "ReceiveTravelReward",
-            "ChooseServant",
-            "GotoWeeklyTask"
-        ]
+        "post_delay": 500
     },
     "ReceiveTravelReward": {
-        "is_sub": true,
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "点击领取奖励"
         ],
+        "timeout": 1000,
         "action": "Click",
         "post_delay": 500,
-        "post_wait_freezes": 500,
-        "next": [
-            "ReceiveRewardConfirm"
-        ]
+        "post_wait_freezes": 1000
     },
     "ChooseServant": {
-        "is_sub": true,
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "点击选择使魔"
         ],
+        "timeout": 1000,
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "ChooseServant",
-            "QuickChoose"
-        ]
+        "post_delay": 500
     },
     "QuickChoose": {
         "recognition": "OCR",
@@ -64,10 +52,7 @@
             "一键派遣"
         ],
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "StartTravel"
-        ]
+        "post_delay": 500
     },
     "StartTravel": {
         "recognition": "OCR",
@@ -83,11 +68,7 @@
             "每周任务"
         ],
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "QuickRecive",
-            "GotoDailyTask"
-        ]
+        "post_delay": 500
     },
     "GotoDailyTask": {
         "recognition": "OCR",
@@ -95,33 +76,15 @@
             "存在感"
         ],
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "QuickRecive",
-            "Back",
-            "WaitForOtherTask"
-        ]
-    },
-    "ReceiveRewardConfirm": {
-        "action": "Click",
-        "target": [
-            100,
-            600,
-            10,
-            10
-        ],
-        "pre_delay": 500
+        "post_delay": 500
     },
     "QuickRecive": {
-        "is_sub": true,
+        "is_sub": false,
         "recognition": "TemplateMatch",
         "template": "QuickRecive.png",
         "threshold": 0.98,
+        "timeout": 1000,
         "action": "Click",
-        "times_limit": 2,
-        "post_delay": 500,
-        "next": [
-            "ReceiveRewardConfirm"
-        ]
+        "post_delay": 1000
     }
 }

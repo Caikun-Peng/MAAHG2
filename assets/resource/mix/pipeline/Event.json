@@ -1,14 +1,17 @@
 {
     "StartEvent": {
+        "action": "Custom",
+        "custom_action": "StartEvent"
+    },
+    "FindEvent_inverse": {
         "recognition": "OCR",
         "expected": [
-            "战斗"
+            "甜蜜烘焙",
+            "甜蜜",
+            "烘焙"
         ],
-        "action": "Click",
-        "post_delay": 200,
-        "next": [
-            "EnterEvent"
-        ]
+        "inverse": true,
+        "timeout": 1000
     },
     "EnterEvent": {
         "recognition": "OCR",
@@ -18,18 +21,15 @@
             "烘焙"
         ],
         "action": "Click",
-        "post_delay": 200,
-        "pre_delay": 200,
-        "next": [
-            "FindBONUS"
-        ]
+        "post_delay": 200
     },
-    "FindBONUS": {
-        "next": [
-            "ChooseBONUS",
-            "SwipeRight",
-            "BackToBattle"
-        ]
+    "FindBONUS_inverse": {
+        "recognition": "OCR",
+        "expected": [
+            "BONUS"
+        ],
+        "inverse": true,
+        "timeout": 1000
     },
     "ChooseBONUS": {
         "recognition": "OCR",
@@ -43,26 +43,27 @@
             0,
             0
         ],
-        "post_delay": 200,
-        "next": [
-            "UsingDouble"
-        ]
+        "post_delay": 200
     },
     "UsingDouble": {
         "recognition": "TemplateMatch",
-        "template": "Click.png",
-        "threshold": 0.48,
-        "action": "Click",
-        "next": [
-            "PreFight",
-            "Fighting"
+        "roi": [
+            600,
+            500,
+            600,
+            100
         ],
-        "times_limit": 3,
-        "runout_next": [
-            "ResultConfirm",
-            "BackToBattle",
-            "WaitForOtherTask"
-        ]
+        "template": "Click.png",
+        "threshold": 0.45,
+        "action": "Click"
+    },
+    "FightAgain": {
+        "recognition": "OCR",
+        "expected": [
+            "再次挑战"
+        ],
+        "action": "Click",
+        "post_delay": 500
     },
     "Fighting": {
         "is_sub": false,
@@ -72,10 +73,16 @@
         ],
         "action": "Custom",
         "custom_action": "FightStart",
-        "post_delay": 5000,
-        "next": [
-            "FightFinish"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "FightFinish": {
         "recognition": "OCR",
@@ -85,10 +92,15 @@
         "inverse": true,
         "action": "Custom",
         "custom_action": "FightEnd",
-        "post_delay": 1000,
-        "post_wait_freezes": 1000,
-        "next": [
-            "UsingDouble"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     }
 }

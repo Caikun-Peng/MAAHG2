@@ -1,15 +1,24 @@
 {
+    "StartStore": {
+        "action": "Custom",
+        "custom_action": "StartStore"
+    },
     "GotoStore": {
         "recognition": "OCR",
         "expected": [
             "商店"
         ],
         "action": "Click",
-        "pre_delay": 100,
-        "post_delay": 100,
-        "next": [
-            "EnterPackShop"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "EnterPackShop": {
         "recognition": "OCR",
@@ -17,10 +26,16 @@
             "礼包商店"
         ],
         "action": "Click",
-        "post_delay": 100,
-        "next": [
-            "ChooseHoumeiPack"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "ChooseHoumeiPack": {
         "recognition": "OCR",
@@ -28,51 +43,34 @@
             "吼美礼包"
         ],
         "action": "Click",
-        "post_delay": 100,
-        "next": [
-            "FindGift"
-        ]
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
-    "FindGift": {
+    "FindGift_inverse": {
         "recognition": "TemplateMatch",
         "template": "零时之种.png",
         "inverse": true,
-        "post_delay": 500,
-        "next": [
-            "ChooseGift",
-            "SwipeDown",
-            "BackToStore"
-        ]
+        "timeout": 1000
     },
     "ChooseGift": {
         "is_sub": false,
         "recognition": "TemplateMatch",
         "template": "零时之种.png",
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "BuyGift"
-        ]
+        "post_delay": 500
     },
     "BuyGift": {
         "recognition": "TemplateMatch",
         "template": "Buy.png",
         "action": "Click",
-        "pre_delay": 100,
-        "post_delay": 500,
-        "next": [
-            "ResultConfirm",
-            "Back",
-            "WaitForOtherTask"
-        ]
-    },
-    "BackToStore": {
-        "recognition": "TemplateMatch",
-        "template": "Back.png",
-        "action": "Click",
-        "pre_delay": 100,
-        "post_delay": 100,
-        "times_limit": 1,
-        "next": []
+        "post_delay": 500
     }
 }

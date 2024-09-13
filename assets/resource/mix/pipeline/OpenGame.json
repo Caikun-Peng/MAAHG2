@@ -1,39 +1,78 @@
 {
     "OpenGame": {
+        "action": "Custom",
+        "custom_action": "OpenGame"
+    },
+    "StartGame": {
         "action": "StartApp",
         "package": "com.miHoYo.HSoDv2.mix/com.mihoyo.combosdk.ComboSDKActivity",
-        "post_wait_freezes": 2000,
-        "post_delay": 500,
-        "next": [
-            "ConfirmTerm",
-            "GetUpdate",
-            "DownloadResource",
-            "WaitToEnter"
-        ]
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "ConfirmTerm": {
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "接受"
         ],
+        "timeout": 1000,
         "action": "Click",
-        "is_sub": true
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "GetUpdate": {
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "更新"
         ],
+        "timeout": 1000,
         "action": "Click",
-        "is_sub": true
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "DownloadResource": {
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "快给我下"
         ],
+        "timeout": 1000,
         "action": "Click",
-        "is_sub": true
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                456,
+                500,
+                600,
+                300
+            ],
+            "threshold": 0.99
+        }
     },
     "WaitToEnter": {
         "recognition": "OCR",

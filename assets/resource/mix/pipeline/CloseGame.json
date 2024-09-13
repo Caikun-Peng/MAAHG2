@@ -1,0 +1,10 @@
+{
+    "CloseGame": {
+        "action": "Custom",
+        "custom_action": "CloseGame"
+    },
+    "EndGame": {
+        "action": "StopApp",
+        "package": "com.miHoYo.HSoDv2.mix"
+    }
+}

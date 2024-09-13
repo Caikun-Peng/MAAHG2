@@ -6,12 +6,7 @@
             "活动",
             "HP"
         ],
-        "inverse": true,
-        "next": [
-            "CheckPower",
-            "ViewBuddyTable",
-            "PreFightFinish"
-        ]
+        "inverse": true
     },
     "ViewBuddyTable": {
         "recognition": "OCR",
@@ -21,10 +16,7 @@
             "好友"
         ],
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "ChooseBuddy"
-        ]
+        "post_delay": 500
     },
     "ChooseBuddy": {
         "recognition": "OCR",
@@ -33,10 +25,7 @@
         ],
         "index": 1,
         "action": "Click",
-        "post_delay": 500,
-        "next": [
-            "StartFight"
-        ]
+        "post_delay": 500
     },
     "StartFight": {
         "recognition": "OCR",
@@ -44,32 +33,46 @@
             "开战"
         ],
         "action": "Click",
-        "post_delay": 500
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "CheckPower": {
         "recognition": "OCR",
         "expected": [
             "补充体力"
-        ],
-        "next": [
-            "Back",
-            "BackToBattle",
-            "WaitForOtherTask"
         ]
     },
     "BackToBattle": {
-        "is_sub": true,
+        "is_sub": false,
         "recognition": "TemplateMatch",
         "template": "BackBattle.png",
+        "timeout": 1000,
         "action": "Click",
-        "post_delay": 500
+        "post_wait_freezes": {
+            "time": 1000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "PreFightFinish": {
+        "inverse": false,
         "recognition": "OCR",
         "expected": [
             "活动",
             "HP"
-        ],
-        "inverse": false
+        ]
     }
 }

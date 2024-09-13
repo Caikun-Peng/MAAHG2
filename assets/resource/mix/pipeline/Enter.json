@@ -1,48 +1,60 @@
 {
+    "EnterGame": {
+        "action": "Custom",
+        "custom_action": "EnterGame"
+    },
     "ChooseServer": {
         "recognition": "OCR",
         "expected": [
             "进入"
         ],
         "action": "Click",
-        "pre_delay": 200,
-        "post_delay": 500,
-        "next": [
-            "EnterGame",
-            "ChooseServer"
-        ]
+        "post_delay": 500
     },
-    "EnterGame": {
+    "EnterServer": {
         "recognition": "OCR",
         "expected": [
             "继续"
         ],
         "action": "Click",
-        "pre_delay": 200,
-        "post_delay": 1000,
-        "next": [
-            "DailyCheck-in",
-            "SkipAnnouncement",
-            "WaitForOtherTask"
-        ]
+        "timeout": 20000,
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "DailyCheck-in": {
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "领取"
         ],
         "index": 1,
         "action": "Click",
-        "pre_delay": 200,
-        "is_sub": true
+        "post_wait_freezes": {
+            "time": 2000,
+            "target": [
+                456,
+                682,
+                369,
+                31
+            ],
+            "threshold": 0.98
+        }
     },
     "SkipAnnouncement": {
-        "is_sub": true,
+        "is_sub": false,
         "recognition": "OCR",
         "expected": [
             "X"
         ],
         "action": "Click",
-        "pre_delay": 200
+        "post_delay": 500
     }
 }
