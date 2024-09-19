@@ -13,12 +13,11 @@ from maa.custom_action import CustomAction
 import asyncio
 
 async def main():
+    # Initial Toolkit
     user_path = "./"
     Toolkit.init_option(user_path)
 
-    resource = Resource()
-    await resource.load("assets/resource/mix")
-
+    # Connect ADB device
     device_list = await Toolkit.adb_devices()
     if not device_list:
         print("No ADB device found.")
@@ -43,6 +42,10 @@ async def main():
     )
     await controller.connect()
     print("Connected.")
+
+    # Load resource
+    resource = Resource()
+    await resource.load("assets/resource/mix")
 
     print("Binding resource and controller...")
     maa_inst = Instance()
@@ -77,9 +80,9 @@ async def main():
 
 class OpenGame(CustomAction):
     def run(self, context, task_name, custom_param, box, rec_detail) -> bool:
-        print("StartGame")     
+        print("StartGame")
         StartGame = context.run_task("StartGame")
-        print(StartGame)     
+        print(StartGame)
 
         print("ConfirmTerm")
         ConfirmTerm = context.run_task("ConfirmTerm")
@@ -98,7 +101,7 @@ class OpenGame(CustomAction):
         print(WaitToEnter)
 
         return True
-    
+
     def stop(self) -> None:
         pass
 
@@ -531,7 +534,7 @@ class FightStart(CustomAction):
         print(tap_down_2)
 
         return True
-    
+
     def stop(self) -> None:
         pass
 
@@ -544,9 +547,9 @@ class FightEnd(CustomAction):
         print("tap_up_2")
         tap_up_2 = context.touch_up(1)
         print(tap_up_2)
-        
+
         return True
-    
+
     def stop(self) -> None:
         pass
 
@@ -557,10 +560,10 @@ class CloseGame(CustomAction):
         print(EndGame)
 
         return True
-    
+
     def stop(self) -> None:
         pass
-    
+
 open_game = OpenGame()
 enter_game = EnterGame()
 start_social = StartSocial()

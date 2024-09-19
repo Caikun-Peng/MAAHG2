@@ -1,0 +1,40 @@
+{
+    "client": "\u6df7\u670d",
+    "resource_path": [
+        "assets/resource/mix"
+    ],
+    "task": {
+        "1": {
+            "name": "\u6253\u5f00\u6e38\u620f | OpenGame",
+            "entry": "OpenGame"
+        },
+        "2": {
+            "name": "\u4ece\u4e0a\u6b21\u767b\u5f55\u8fdb\u5165 | AutoEnter",
+            "entry": "EnterGame"
+        },
+        "3": {
+            "name": "\u793e\u4ea4 | Social",
+            "entry": "StartSocial"
+        },
+        "4": {
+            "name": "\u5546\u5e97 | Store",
+            "entry": "StartStore"
+        },
+        "5": {
+            "name": "\u591a\u5143\u88c2\u7f1d | Fracture",
+            "entry": "StartFracture"
+        },
+        "6": {
+            "name": "\u6d3b\u52a8 | Event",
+            "entry": "StartEvent"
+        },
+        "7": {
+            "name": "\u6bcf\u65e5\u4efb\u52a1 | Task",
+            "entry": "StartTask"
+        },
+        "8": {
+            "name": "\u5173\u95ed\u6e38\u620f | CloseGame",
+            "entry": "CloseGame"
+        }
+    }
+}
