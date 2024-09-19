@@ -128,6 +128,18 @@ class config_task():
     def get_active_task_list(self):
         return self.active_task, self.active_indexes
 
+    def get_active_task_name(self):
+        name = []
+        for task in self.active_task:
+            name.append(task['name'])
+        return name
+
+    def get_active_task_entry(self):
+        entry = []
+        for task in self.active_task:
+            entry.append(task['entry'])
+        return entry
+
     def add_task(self, index):
         index = index - 1
         task_to_add = self.data[index]
@@ -150,7 +162,7 @@ class config_task():
         return f"{task_to_move['name']} is moved to {pos+1}"
 
     def set_active_task(self):
-        new_active_task = {str(index + 1): task for index, task in enumerate(self.active_task)}
+        new_active_task = {str(self.active_indexes + 1): task for self.active_indexes, task in enumerate(self.active_task)}
         self.active['task'] = new_active_task
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.active, f, indent=4)

@@ -1,13 +1,11 @@
-from maa.context import SyncContext
+from config import config_client, config_task
 
-# python -m pip install maafw
+from maa.context import SyncContext
 from maa.define import RectType
 from maa.resource import Resource
 from maa.controller import AdbController
 from maa.instance import Instance
 from maa.toolkit import Toolkit
-
-from maa.custom_recognizer import CustomRecognizer
 from maa.custom_action import CustomAction
 
 import asyncio
@@ -43,9 +41,12 @@ async def main():
     await controller.connect()
     print("Connected.")
 
+    client_config = config_client()
+
     # Load resource
     resource = Resource()
-    await resource.load("assets/resource/mix")
+    path = client_config.get_active_client_info()[1]
+    await resource.load(path[0])
 
     print("Binding resource and controller...")
     maa_inst = Instance()
@@ -67,15 +68,12 @@ async def main():
     maa_inst.register_action("FightEnd", fight_end)
     maa_inst.register_action("CloseGame", Close_game)
 
+    task_config = config_task()
+
     print("Start...")
-    await maa_inst.run_task("OpenGame")
-    await maa_inst.run_task("EnterGame")
-    await maa_inst.run_task("StartSocial")
-    await maa_inst.run_task("StartStore")
-    await maa_inst.run_task("StartFracture")
-    await maa_inst.run_task("StartEvent")
-    await maa_inst.run_task("StartTask")
-    await maa_inst.run_task("CloseGame")
+    entries = task_config.get_active_task_entry()
+    for entry in entries:
+        await maa_inst.run_task(entry)
     print("Finish")
 
 class OpenGame(CustomAction):
