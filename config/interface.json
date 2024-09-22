@@ -19,15 +19,15 @@
             "entry": "OpenGame"
         },
         {
-            "name": "从上次登录进入 | AutoEnter",
+            "name": "继续登录 | AutoEnter",
             "entry": "EnterGame"
         },
         {
-            "name": "社交 | Social",
+            "name": "社交任务 | Social",
             "entry": "StartSocial"
         },
         {
-            "name": "商店 | Store",
+            "name": "商店任务 | Store",
             "entry": "StartStore"
         },
         {
@@ -35,7 +35,7 @@
             "entry": "StartFracture"
         },
         {
-            "name": "活动 | Event",
+            "name": "活动打关 | Event",
             "entry": "StartEvent"
         },
         {
