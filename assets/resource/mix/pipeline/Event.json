@@ -6,9 +6,7 @@
     "FindEvent_inverse": {
         "recognition": "OCR",
         "expected": [
-            "甜蜜烘焙",
-            "甜蜜",
-            "烘焙"
+            "海湾障碍赛"
         ],
         "inverse": true,
         "timeout": 1000
@@ -16,9 +14,7 @@
     "EnterEvent": {
         "recognition": "OCR",
         "expected": [
-            "甜蜜烘焙",
-            "甜蜜",
-            "烘焙"
+            "海湾障碍赛"
         ],
         "action": "Click",
         "post_delay": 200
