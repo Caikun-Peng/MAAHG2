@@ -81,3 +81,5 @@ remove_folder("build")
 remove_folder("dist")
 
 remove_file("MAAHG2.spec")
+remove_file("src/requirements.txt")
+remove_file("src/requirementstemp.txt")
