@@ -450,4 +450,4 @@ tools/ImageCropper/**/*.png
 test*
 maa_option.json
 *.spec
-*.bck
+*.bak
