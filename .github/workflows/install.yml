@@ -77,15 +77,6 @@ jobs:
         run: |
           python ./build.py ${{ needs.meta.outputs.tag }}
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: MAAHG2-win-${{ matrix.arch }}
-          path: "./"
-
-      - name: Move executable to root
-        run: |
-          move dist/MAAHG2.exe .
-
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
     needs: [meta, windows]
