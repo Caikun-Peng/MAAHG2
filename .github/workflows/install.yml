@@ -79,8 +79,17 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: MaaXXX-win-${{ matrix.arch }}
+          name: MAAHG2-win-${{ matrix.arch }}
           path: "./"
+
+      - name: Move executable to root
+        run: |
+          move dist/MAAHG2.exe .
+
+      - name: Clean
+        run: |
+          rmdir /S /Q build
+          rmdir /S /Q dist
 
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
