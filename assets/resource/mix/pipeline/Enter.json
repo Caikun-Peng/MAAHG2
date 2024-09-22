@@ -52,8 +52,10 @@
         "is_sub": false,
         "recognition": "OCR",
         "expected": [
+            "今日不再提醒",
             "X"
         ],
+        "timeout": 2000,
         "action": "Click",
         "post_delay": 500
     }
