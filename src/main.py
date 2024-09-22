@@ -170,12 +170,13 @@ async def start():
             # Select action
             print("### Select action ###")
             if event_flag:
-                print(f"\t0. 配置活动设置| Config event")
-            print(f"\t1. Add task")
-            print(f"\t2. Move task")
-            print(f"\t3. Delete task")
-            print(f"\t4. Run task")
-            print(f"\t5. Exit")
+                print(f"\t0. 配置活动 | Config event")
+            print(f"\t1. 添加任务 | Add task")
+            print(f"\t2. 移动任务 | Move task")
+            print(f"\t3. 删除任务 | Delete task")
+            print(f"\t4. 运行任务 | Run task")
+            print(f"\t5. 退出程序 | Exit")
+
             action_index = int(input(f"Please input [{0 if event_flag else 1}-5]: "))
             while action_index not in range(0 if event_flag else 1,5+1):
                 action_index = int(input(f"Invalid value, please input [{0 if event_flag else 1}-5]: "))
