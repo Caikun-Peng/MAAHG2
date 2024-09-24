@@ -20,28 +20,55 @@ async def start():
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def set_latest_event(event_config = config_event()):
-        event_now = event_config.get_event_name_resource()
-        print(f"The current event: {event_now}")
-        event_to_set = input(f"Set the latest event (leave blank to continue using current activity):\n")
+        event_to_set = input(f"Set event name (leave blank to continue using current event):\n")
         if event_to_set:
-            if event_config.config_event_name(event_to_set) and event_config.set_event(event_to_set):
-                print(f"The current event set to: {event_to_set}")
-            else:
-                print(f"Setting failed, continue event {event_now}")
+            event_config.config_event_name(event_to_set)
+            event_config.set_event(event_to_set)
         return True
 
     def set_event_battle_time(event_config = config_event()):
-        battle_time_now = event_config.get_event_time()
-        print(f"The current battle times: {battle_time_now}")
         battle_time_to_set = input(f"Set battle times (leave blank to continue using current battle times):\n")
         if battle_time_to_set:
-            if event_config.config_event_time(battle_time_to_set):
-                print(f"The current battle times set to: {event_config.get_event_time()}")
-            else:
-                print(f"Setting failed, continue using battle times: {battle_time_now}")
+            event_config.config_event_time(battle_time_to_set)
         return True
 
-    def add_task(task_config = config_task):
+    def set_double_ticket(event_config = config_event()):
+        ticket_to_set = bool(input(f"Set ticket config, leave blank for not using, enter any value for use: "))
+        event_config.config_event_ticket(ticket_to_set)
+        return True
+
+    def config_event_info():
+        while 1:
+            clear()
+            try:
+                event_now = event_config.get_event_name_resource()
+                print(f"The current event: {event_now}")
+                battle_time_now = event_config.get_event_time()
+                print(f"The current battle times: {battle_time_now}")
+                ticket_now = event_config.get_event_ticket()
+                print(f"Using double tickets: {ticket_now}")
+
+                print("### Select action ###")
+                print(f"\t1. 更换活动名称   | Change event name")
+                print(f"\t2. 更换战斗次数   | Change battle times")
+                print(f"\t3. 是否使用双倍券 | Set double ticket")
+                print(f"\t4. 返回上一页     | Back")
+                action_index = int(input(f"Please input [1-4]: "))
+                while action_index not in range(4+1):
+                    action_index = int(input(f"Invalid value, please input [1-4]: "))
+
+                if action_index == 1:
+                    set_latest_event(event_config)
+                elif action_index == 2:
+                    set_event_battle_time(event_config)
+                elif action_index == 3:
+                    set_double_ticket(event_config)
+                elif action_index == 4:
+                    return True
+            except:
+                return False
+
+    def add_task(task_config = config_task()):
         clear()
         print("Current tasks: ")
         task_list = task_config.get_active_task_name()
@@ -56,7 +83,7 @@ async def start():
         task_config.add_task(add_task_index)
         return True
 
-    def move_task(task_config = config_task):
+    def move_task(task_config = config_task()):
         clear()
         print("Move task: ")
         task_list = task_config.get_active_task_name()
@@ -79,7 +106,7 @@ async def start():
             task_config.remove_task(delete_task_index)
         return True
 
-    def change_task_set(task_config = config_task):
+    def change_task_set(task_config = config_task()):
         while 1:
             try:
                 clear()
@@ -159,8 +186,9 @@ async def start():
         print("Connected.")
 
         global times_to_fight
-        event_name, times_to_fight = event_config.get_event()
-        event_config.set_event(event_name)
+        _, times_to_fight = event_config.get_event()
+        global using_double
+        using_double = event_config.get_event_ticket()
 
         # Load resource
         resource = Resource()
@@ -213,8 +241,9 @@ async def start():
                 # Show current event (if event task included)
                 if event_flag:
                     print("Current event:")
-                    print(f"\t{'Event name:':14}{event_config.get_event_name_resource()}")
-                    print(f"\t{'Battle times:':14}{event_config.get_event_time()}")
+                    print(f"\t{'Event name:':16}{event_config.get_event_name_resource()}")
+                    print(f"\t{'Battle times:':16}{event_config.get_event_time()}")
+                    print(f"\tDouble tickets: {event_config.get_event_ticket()}")
 
                 # Select action
                 print("### Select action ###")
@@ -231,9 +260,7 @@ async def start():
                     action_index = int(input(f"Invalid value, please input [{0 if event_flag else 1}-6]: "))
 
                 if action_index == 0:
-                    clear()
-                    set_latest_event(event_config)
-                    set_event_battle_time(event_config)
+                    config_event_info()
                 elif action_index == 1:
                     change_task_set(task_config)
                 elif action_index == 2:
@@ -552,7 +579,6 @@ class StartEvent(CustomAction):
         ChooseBONUS = context.run_task("ChooseBONUS")
         print(ChooseBONUS)
 
-        using_double = 1
         if using_double:
             print("UsingDouble")
             UsingDouble = context.run_task("UsingDouble")
@@ -752,5 +778,6 @@ fight_end = FightEnd()
 Close_game = CloseGame()
 
 times_to_fight = 1
+using_double = True
 
 asyncio.run(start())

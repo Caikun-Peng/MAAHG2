@@ -259,6 +259,7 @@ class config_event():
         self.config = load_json(self.config_path)
         self.event_name = self.config['event']['name']
         self.event_time = self.config['event']['time']
+        self.event_ticket = self.config['event']['ticket']
 
     def load_resource(self, resource_path):
         self.resource = load_json(self.resource_path)
@@ -274,6 +275,9 @@ class config_event():
     def get_event_time(self):
         return self.event_time
 
+    def get_event_ticket(self):
+        return self.event_ticket
+
     def get_event_name_resource(self):
         return self.enter_event['expected'][0]
 
@@ -282,21 +286,28 @@ class config_event():
         self.config['event']['time'] = time
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
-        self.load_resource(self.resource_path)
+        self.load_config(self.config_path)
         return True
 
-    def config_event_name(self, name) -> bool:
+    def config_event_name(self, name):
         self.config['event']['name'] = name
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
-        self.load_resource(self.resource_path)
+        self.load_config(self.config_path)
         return True
 
-    def config_event_time(self, time=3) -> bool:
+    def config_event_time(self, time=3):
         self.config['event']['time'] = time
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
-        self.load_resource(self.resource_path)
+        self.load_config(self.config_path)
+        return True
+
+    def config_event_ticket(self, use=True):
+        self.config['event']['ticket'] = use
+        with open(self.config_path, 'w', encoding='utf-8') as f:
+            json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
         return True
 
     def set_event(self, name):

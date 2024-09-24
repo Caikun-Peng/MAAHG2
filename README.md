@@ -8,7 +8,7 @@
 # MAAHG2
 **MAA Houkai Gakuen 2**
 
-基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 的《崩坏学园2》自动化程序。  
+基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 的《崩坏学园2》自动化程序。
 目前正在开发中.....
 </div>
 
@@ -47,14 +47,19 @@
 该程序有以下命令
 
 0. 配置活动 | Config event
-   - 当任务列表有 `活动打关 | Event` 时显示
-   - 设置活动名称
-   - 设置挂机次数
-1. 添加任务 | Add task
-2. 移动任务 | Move task
-3. 删除任务 | Delete task
-4. 运行任务 | Run task
-5. 退出程序 | Exit
+    - 当任务列表有 `活动打关 | Event` 时显示
+    - 设置活动名称
+    - 设置挂机次数
+    - 设置是否使用双倍券
+1. 换任务集 | Change task set
+    1. 更换任务集 | Change task set
+    2. 新增任务集 | Add task set
+    3. 删除任务集 | Delete task set
+2. 添加任务 | Add task
+3. 移动任务 | Move task
+4. 删除任务 | Delete task
+5. 运行任务 | Run task
+6. 退出程序 | Exit
 
 
 

@@ -5,7 +5,8 @@
     ],
     "event": {
         "name": "海湾障碍赛",
-        "time": "3"
+        "time": "3",
+        "ticket": true
     },
     "task_set": "set_1",
     "task": {
