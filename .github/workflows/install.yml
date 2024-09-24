@@ -4,22 +4,11 @@ on:
   push:
     tags:
       - "v*"
-    branches:
-      - "main"
     paths:
       - ".github/workflows/install.yml"
       - "assets/**"
       - "config/**"
       - "src/**"
-  pull_request:
-    branches:
-      - "**"
-    paths:
-      - ".github/workflows/install.yml"
-      - "assets/**"
-      - "config/**"
-      - "src/**"
-  workflow_dispatch:
 
 jobs:
   meta:
