@@ -77,6 +77,7 @@ class config_client():
             self.config['resource_path'] = path
             with open(self.config_path, 'w', encoding='utf-8') as f:
                 json.dump(self.config, f, ensure_ascii=False, indent=4)
+            self.load_config(self.config_path)
             return f"Client setted to {self.get_active_client_info()}"
         except:
             return "index out of range"
@@ -103,8 +104,9 @@ class config_task():
         self.active_task = []
         self.active_indexes = []
         self.config = load_json(self.config_path)
-        for index, task in enumerate(self.config['task'], start=1):
-            self.active_task.append(self.config['task'][task])
+        self.active_task_set = self.config["task_set"]
+        for index, task in enumerate(self.config['task'][self.active_task_set], start=1):
+            self.active_task.append(self.config['task'][self.active_task_set][task])
             self.active_indexes.append(index)
 
     def get_task_list(self):
@@ -137,6 +139,30 @@ class config_task():
         except:
             return "index out of range"
 
+    def get_task_sets(self):
+        task_sets = self.config['task']
+        return task_sets
+
+    def get_task_sets_num(self):
+        set_len = len(self.config['task'])
+        return set_len
+
+    def get_task_set(self, set_index):
+        set_index = f'set_{set_index}'
+        tasks = []
+        indexes = []
+        for index, task in enumerate(self.config['task'][set_index], start=1):
+            tasks.append(self.config['task'][set_index][task])
+            indexes.append(index)
+        return tasks, indexes
+
+    def get_task_set_name(self, set_index):
+        name = []
+        tasks, _ = self.get_task_set(set_index)
+        for task in tasks:
+            name.append(task['name'])
+        return name
+
     def get_active_task_list(self):
         return self.active_task, self.active_indexes
 
@@ -152,12 +178,26 @@ class config_task():
             entry.append(task['entry'])
         return entry
 
+    def get_active_task_set(self):
+        set_name = self.active_task_set
+        set_name = set_name.replace('_',' ')
+        return set_name
+
     def add_task(self, index):
         index = index - 1
         task_to_add = self.data[index]
         self.active_task.append(task_to_add)
         self.set_active_task()
         return f"{task_to_add['name']} is added"
+
+    def add_task_set(self):
+        sets_num = self.get_task_sets_num()
+        set_index = sets_num + 1
+        set_index_str = f"set_{set_index}"
+        self.config['task'][set_index_str] = {}
+        self.set_task_set()
+        self.set_active_task_set(set_index)
+        return True
 
     def remove_task(self, index):
         try:
@@ -167,6 +207,18 @@ class config_task():
             return f"{task_to_remove['name']} is removed"
         except:
             return f"out of index"
+
+    def remove_task_set(self, set_index):
+        set_index = f"set_{set_index}"
+        task_set_to_remove = self.config['task'].pop(set_index)
+        new_task = {}
+        for index, (_, tesks) in enumerate(self.config['task'].items(), start=1):
+            new_set = f'set_{index}'
+            new_task[new_set] = tesks
+        self.config['task'] = new_task
+        self.set_active_task_set(1)
+        self.set_task_set()
+        return f"{task_set_to_remove} is removed"
 
     def move_task(self, index, pos):
         index = int(index) - 1
@@ -178,10 +230,22 @@ class config_task():
 
     def set_active_task(self):
         new_active_task = {str(self.active_indexes + 1): task for self.active_indexes, task in enumerate(self.active_task)}
-        self.config['task'] = new_active_task
+        self.config['task'][self.active_task_set] = new_active_task
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
         return True
+
+    def set_active_task_set(self, set_index):
+        set_index = int(set_index)
+        self.config["task_set"] = f'set_{set_index}'
+        self.set_task_set()
+        return True
+
+    def set_task_set(self):
+        with open(self.config_path, 'w', encoding='utf-8') as f:
+            json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
 
 class config_event():
     def __init__(self, config_path=CONFIG_PATH, resource_path=RESOURCE_PATH) -> None:
@@ -195,6 +259,7 @@ class config_event():
         self.config = load_json(self.config_path)
         self.event_name = self.config['event']['name']
         self.event_time = self.config['event']['time']
+        self.event_ticket = self.config['event']['ticket']
 
     def load_resource(self, resource_path):
         self.resource = load_json(self.resource_path)
@@ -210,6 +275,9 @@ class config_event():
     def get_event_time(self):
         return self.event_time
 
+    def get_event_ticket(self):
+        return self.event_ticket
+
     def get_event_name_resource(self):
         return self.enter_event['expected'][0]
 
@@ -218,18 +286,28 @@ class config_event():
         self.config['event']['time'] = time
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
         return True
 
-    def config_event_name(self, name) -> bool:
+    def config_event_name(self, name):
         self.config['event']['name'] = name
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
         return True
 
-    def config_event_time(self, time=3) -> bool:
+    def config_event_time(self, time=3):
         self.config['event']['time'] = time
         with open(self.config_path, 'w', encoding='utf-8') as f:
             json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
+        return True
+
+    def config_event_ticket(self, use=True):
+        self.config['event']['ticket'] = use
+        with open(self.config_path, 'w', encoding='utf-8') as f:
+            json.dump(self.config, f, ensure_ascii=False, indent=4)
+        self.load_config(self.config_path)
         return True
 
     def set_event(self, name):
@@ -239,4 +317,5 @@ class config_event():
         self.resource['EnterEvent'] = self.enter_event
         with open(self.resource_path, 'w', encoding='utf-8') as f:
             json.dump(self.resource, f, ensure_ascii=False, indent=4)
+        self.load_resource(self.resource_path)
         return True
