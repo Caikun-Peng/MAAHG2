@@ -36,7 +36,7 @@ async def start():
         battle_time_to_set = input(f"Set battle times (leave blank to continue using current battle times):\n")
         if battle_time_to_set:
             if event_config.config_event_time(battle_time_to_set):
-                print(f"The current battle times set to: {battle_time_to_set}")
+                print(f"The current battle times set to: {event_config.get_event_time()}")
             else:
                 print(f"Setting failed, continue using battle times: {battle_time_now}")
         return True
@@ -78,6 +78,54 @@ async def start():
             delete_task_index = int(input(f"Please input [1-{len(task_list)}]: "))
             task_config.remove_task(delete_task_index)
         return True
+
+    def change_task_set(task_config = config_task):
+        while 1:
+            try:
+                clear()
+                print("Task set list: ")
+                sets_num = task_config.get_task_sets_num()
+                for num in range(sets_num):
+                    set_index = num + 1
+                    print(f'\tTask set {set_index}:')
+                    for index, task in enumerate(task_config.get_task_set_name(set_index), start=1):
+                        print(f"\t\t{f'{index}.':4}{task}")
+                print(f"\nCurrent task set: {task_config.get_active_task_set()}\n")
+
+                print("### Select action ###")
+                print(f"\t1. 更换任务集 | Change task set")
+                print(f"\t2. 新增任务集 | Add task set")
+                print(f"\t3. 删除任务集 | Delete task set")
+                print(f"\t4. 添加任务   | Add task")
+                print(f"\t5. 移动任务   | Move task")
+                print(f"\t6. 删除任务   | Delete task")
+                print(f"\t7. 返回上一页 | Back")
+
+                action_index = int(input(f"Please input [1-7]: "))
+                while action_index not in range(7+1):
+                    action_index = int(input(f"Invalid value, please input [1-7]: "))
+
+                if action_index == 1:
+                    change_set_index = int(input(f"Please input [1-{set_index}]: "))
+                    while change_set_index not in range(set_index+1):
+                        change_set_index = int(input(f"Invalid value, please input [1-{set_index}]: "))
+                    task_config.set_active_task_set(change_set_index)
+                    return True
+                elif action_index == 2:
+                    task_config.add_task_set()
+                elif action_index == 3:
+                    delete_task_set_index = int(input(f"Please input [1-{sets_num}]: "))
+                    task_config.remove_task_set(delete_task_set_index)
+                elif action_index == 4:
+                    add_task(task_config)
+                elif action_index == 5:
+                    move_task(task_config)
+                elif action_index == 6:
+                    delete_task(task_config)
+                elif action_index == 7:
+                    return True
+            except:
+                return False
 
     async def main():
         # Initial Toolkit
@@ -147,56 +195,60 @@ async def start():
 
     async def menu():
         while 1:
-            clear()
-            # Show current client
-            print("Current client:")
-            client_name, _ = client_config.get_active_client_info()
-            print(f"\t{client_name}")
-
-            # Show current tasks
-            print("Tasks:")
-            task_list = task_config.get_active_task_name()
-            for index, task in enumerate(task_list, start=1):
-                print(f"\t{f'{index}.':4}{task}")
-            event_flag = 1 if 'StartEvent' in \
-                task_config.get_active_task_entry() else 0
-
-            # Show current event (if event task included)
-            if event_flag:
-                print("Current event:")
-                print(f"\t{'Event name:':14}{event_config.get_event_name_resource()}")
-                print(f"\t{'Battle times:':14}{event_config.get_event_time()}")
-
-            # Select action
-            print("### Select action ###")
-            if event_flag:
-                print(f"\t0. 配置活动 | Config event")
-            print(f"\t1. 添加任务 | Add task")
-            print(f"\t2. 移动任务 | Move task")
-            print(f"\t3. 删除任务 | Delete task")
-            print(f"\t4. 运行任务 | Run task")
-            print(f"\t5. 退出程序 | Exit")
-
-            action_index = int(input(f"Please input [{0 if event_flag else 1}-5]: "))
-            while action_index not in range(0 if event_flag else 1,5+1):
-                action_index = int(input(f"Invalid value, please input [{0 if event_flag else 1}-5]: "))
-
-            if action_index == 0:
+            try:
                 clear()
-                set_latest_event(event_config)
-                set_event_battle_time(event_config)
-            elif action_index == 1:
-                add_task(task_config)
-            elif action_index == 2:
-                move_task(task_config)
-            elif action_index == 3:
-                delete_task(task_config)
-            elif action_index == 4:
-                await main()
-            elif action_index == 5:
-                os.system('cls' if os.name == 'nt' else 'clear')
-                exit()
+                # Show current client
+                print("Current client:")
+                client_name, _ = client_config.get_active_client_info()
+                print(f"\t{client_name}")
 
+                # Show current tasks
+                print(f"Tasks: task {task_config.get_active_task_set()}")
+                task_list = task_config.get_active_task_name()
+                for index, task in enumerate(task_list, start=1):
+                    print(f"\t{f'{index}.':4}{task}")
+                event_flag = 1 if 'StartEvent' in \
+                    task_config.get_active_task_entry() else 0
+
+                # Show current event (if event task included)
+                if event_flag:
+                    print("Current event:")
+                    print(f"\t{'Event name:':14}{event_config.get_event_name_resource()}")
+                    print(f"\t{'Battle times:':14}{event_config.get_event_time()}")
+
+                # Select action
+                print("### Select action ###")
+                if event_flag:
+                    print(f"\t0. 配置活动 | Config event")
+                print(f"\t1. 换任务集 | Change task set")
+                print(f"\t2. 添加任务 | Add task")
+                print(f"\t3. 移动任务 | Move task")
+                print(f"\t4. 删除任务 | Delete task")
+                print(f"\t5. 运行任务 | Run task")
+                print(f"\t6. 退出程序 | Exit")
+                action_index = int(input(f"Please input [{0 if event_flag else 1}-6]: "))
+                while action_index not in range(0 if event_flag else 1,6+1):
+                    action_index = int(input(f"Invalid value, please input [{0 if event_flag else 1}-6]: "))
+
+                if action_index == 0:
+                    clear()
+                    set_latest_event(event_config)
+                    set_event_battle_time(event_config)
+                elif action_index == 1:
+                    change_task_set(task_config)
+                elif action_index == 2:
+                    add_task(task_config)
+                elif action_index == 3:
+                    move_task(task_config)
+                elif action_index == 4:
+                    delete_task(task_config)
+                elif action_index == 5:
+                    await main()
+                elif action_index == 6:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    exit()
+            except:
+                return False
     await menu()
 
 class OpenGame(CustomAction):
